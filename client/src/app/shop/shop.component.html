@@ -2,22 +2,38 @@
     <div class="row">
         <section class="col-md-3">
             <h5 class="text-warning ms-3">Sort</h5>
-            <select class="form-select mb-4">
-                <option selected>Alphabetical</option>
-                <option>Price low to high</option>
-                <option>Price high to low</option>
+            <select class="form-select mb-4" (change)="onSortSelected($event)">
+                <option *ngFor="let sort of sortOptions" [value]="sort.value">
+                    {{sort.name}}
+                </option>
             </select>
 
 
             <h5 class="text-warning ms-3">Brands</h5>
                 <ul class="list-group my-3">
-                    <li class="list-group-item" *ngFor="let brand of brands">{{brand.name}}</li>
+                    <li class="list-group-item" 
+                    *ngFor="let brand of brands"
+                    [class.active]="brand.id === brandIdSelected"
+                    [value]="brand.id"
+                    (click)="onBrandSelected(brand.id)"
+                    style="cursor: pointer;"
+                    >
+                        {{brand.name}}
+                    </li>
                   </ul>
             
 
             <h5 class="text-warning ms-3">Types</h5>
                 <ul class="list-group my-3">
-                    <li class="list-group-item" *ngFor="let type of types">{{type.name}}</li>
+                    <li class="list-group-item" 
+                    *ngFor="let type of types"
+                    [class.active]="type.id === typeIdSelected"
+                    [value]="type.id"
+                    (click)="onTypeSelected(type.id)"
+                    style="cursor: pointer;"
+                    >
+                        {{type.name}}
+                    </li>
                 </ul>
            
         </section>
