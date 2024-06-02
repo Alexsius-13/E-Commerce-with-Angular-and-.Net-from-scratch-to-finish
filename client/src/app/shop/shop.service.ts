@@ -28,6 +28,10 @@ export class ShopService {
     return this.http.get<Pagination<Product[]>>(this.baseApiUrl + 'products', {params});
   }
 
+  getProduct(id: number) {
+    return this.http.get<Product>(this.baseApiUrl + 'products/' + id);
+  }
+
   getBrands(){
     return this.http.get<Brand[]>(this.baseApiUrl + 'products/brands');
   }
