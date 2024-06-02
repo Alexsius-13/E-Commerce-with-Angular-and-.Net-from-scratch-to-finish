@@ -9,8 +9,17 @@
     top: -20px;
     right: 32px;
 }
+a {
+    color: #343a40;
+    cursor: pointer;
+    text-decoration: none;
+    &.active {
+        color: orange;
+    }
+}
 .logo {
     max-height: 70px;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
