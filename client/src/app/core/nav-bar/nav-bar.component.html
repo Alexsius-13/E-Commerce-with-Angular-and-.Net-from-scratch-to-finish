@@ -1,11 +1,11 @@
 <header class="d-flex flex-md-row align-items-center justify-content-between p-3 px-4 mb-3 bg-white border-bottom fixed-top shadow-sm">
     <img src="/assets/images/logo.png" alt="logo" class="logo" routerLink="/">
-    <nav class="my-2 text-uppercase fs-4">
-        <a class="p-2" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+    <nav class="my-2 text-uppercase fs-4 d-none d-md-flex">
+        <a class="p-2" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
         <a class="p-2" routerLink="/shop" routerLinkActive="active">Shop</a>
         <a class="p-2" routerLink="/test-error" routerLinkActive="active">Errors</a>
     </nav>
-    <div class="d-flex align-items-center">
+    <div class="d-none d-md-flex align-items-center">
         <a class="position-relative">
             <i class="fa fa-shopping-cart fa-2x me-5 text-dark"></i>
             <div class="cart-no">5</div>
@@ -13,6 +13,27 @@
         <a href="" class="btn btn-outline-secondary me-2">Login</a>
         <a href="" class="btn btn-outline-secondary me-3">Sign up</a>
     </div>
+    <div class="d-md-none">
+        <a class="position-relative">
+            <i class="fa fa-bars fa-2x text-dark" (click)="toggleMenu()"></i>
+        </a>
+    </div>
 </header>
+
+<div class="burger-menu" [class.show]="isMenuOpen" id="burgerMenu">
+    <span class="close-btn" (click)="toggleMenu()">&times;</span>
+    <div class="d-flex flex-column align-items-center mt-5">
+        <a class="p-2 mb-3" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+        <a class="p-2 mb-3" routerLink="/shop" routerLinkActive="active">Shop</a>
+        <a class="p-2 mb-3" routerLink="/test-error" routerLinkActive="active">Errors</a>
+        <a class="btn btn-outline-secondary mb-2" href="">Login</a>
+        <a class="btn btn-outline-secondary mb-3" href="">Sign up</a>
+        <a class="position-relative mb-3">
+            <i class="fa fa-shopping-cart fa-2x text-dark"></i>
+            <div class="cart-no-second">5</div>
+        </a>
+    </div>
+</div>
+
 
 
