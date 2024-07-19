@@ -6,9 +6,11 @@
         <a class="p-2" routerLink="/test-error" routerLinkActive="active">Errors</a>
     </nav>
     <div class="d-none d-md-flex align-items-center">
-        <a class="position-relative">
+        <a routerLink="/basket" class="position-relative">
             <i class="fa fa-shopping-cart fa-2x me-5 text-dark"></i>
-            <div class="cart-no">5</div>
+            <div *ngIf="(basketService.basketSource$ | async) as basket" class="cart-no">
+                {{getCount(basket.items)}}
+            </div>
         </a>
         <a href="" class="btn btn-outline-secondary me-2">Login</a>
         <a href="" class="btn btn-outline-secondary me-3">Sign up</a>
@@ -28,9 +30,9 @@
         <a class="p-2 mb-3" routerLink="/test-error" routerLinkActive="active">Errors</a>
         <a class="btn btn-outline-secondary mb-2" href="">Login</a>
         <a class="btn btn-outline-secondary mb-3" href="">Sign up</a>
-        <a class="position-relative mb-3">
+        <a routerLink="/basket" class="position-relative mb-3">
             <i class="fa fa-shopping-cart fa-2x text-dark"></i>
-            <div class="cart-no-second">5</div>
+            <div *ngIf="(basketService.basketSource$ | async) as basket" class="cart-no-second">{{getCount(basket.items)}}</div>
         </a>
     </div>
 </div>
