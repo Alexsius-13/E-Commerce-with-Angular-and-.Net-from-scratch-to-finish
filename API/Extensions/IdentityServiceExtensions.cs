@@ -19,10 +19,11 @@ namespace API.Extensions
 
             services.AddIdentityCore<AppUser>(opt =>
             {
-                
+                opt.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultEmailProvider;   
             })
             .AddEntityFrameworkStores<AppIdentityDbContext>()
-            .AddSignInManager<SignInManager<AppUser>>();
+            .AddSignInManager<SignInManager<AppUser>>()
+            .AddDefaultTokenProviders();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

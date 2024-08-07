@@ -16,13 +16,15 @@ namespace API.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ITokenService _tokenService;
+        private readonly IEmailRepository _emailRepository;
         private readonly IMapper _mapper;
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, 
-        ITokenService tokenService, IMapper mapper)
+        ITokenService tokenService, IEmailRepository emailRepository, IMapper mapper)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _tokenService = tokenService;
+            _emailRepository = emailRepository;
             _mapper = mapper;
         }
 
@@ -113,6 +115,52 @@ namespace API.Controllers
                 Token = _tokenService.CreateToken(user),
                 Email = user.Email
             };
+        }
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordDto forgotPasswordDto)
+        {
+            var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
+
+            if (user == null)
+            {
+                return BadRequest(new ApiResponse(400, "Invalid email address."));
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            var callbackUrl = Url.Action(
+                nameof(ResetPassword),
+                "Account",
+                new { token, email = user.Email },
+                Request.Scheme);
+
+            await _emailRepository.SendEmailAsync(
+                forgotPasswordDto.Email,
+                "Reset Password",
+                $"Please reset your password by clicking <a href='{callbackUrl}'>here</a>.");
+
+            return Ok(new ApiResponse(200, "Password reset link has been sent to your email."));
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
+        {
+            var user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
+
+            if (user == null)
+            {
+                return BadRequest(new ApiResponse(400, "Invalid email address."));
+            }
+
+            var result = await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest(new ApiResponse(400, "Error resetting password."));
+            }
+
+            return Ok(new ApiResponse(200, "Password has been reset successfully."));
         }
     }
 }

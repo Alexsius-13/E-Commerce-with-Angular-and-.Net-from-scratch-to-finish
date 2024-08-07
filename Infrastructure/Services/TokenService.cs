@@ -44,13 +44,13 @@ namespace Infrastructure.Services
         }
     }
 
-    internal class Token
-    {
-        private SecurityTokenDescriptor tokenDescriptor;
+    // internal class Token
+    // {
+    //     private SecurityTokenDescriptor tokenDescriptor;
 
-        public Token(SecurityTokenDescriptor tokenDescriptor)
-        {
-            this.tokenDescriptor = tokenDescriptor;
-        }
-    }
+    //     public Token(SecurityTokenDescriptor tokenDescriptor)
+    //     {
+    //         this.tokenDescriptor = tokenDescriptor;
+    //     }
+    // }
 }
