@@ -12,8 +12,8 @@
                 {{getCount(basket.items)}}
             </div>
         </a>
-        <a href="" class="btn btn-outline-secondary me-2">Login</a>
-        <a href="" class="btn btn-outline-secondary me-3">Sign up</a>
+        <a routerLink="/account/login" class="btn btn-outline-secondary me-2">Login</a>
+        <a routerLink="/account/register" class="btn btn-outline-secondary me-3">Sign up</a>
     </div>
     <div class="d-md-none">
         <a class="position-relative">
@@ -28,8 +28,8 @@
         <a class="p-2 mb-3" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
         <a class="p-2 mb-3" routerLink="/shop" routerLinkActive="active">Shop</a>
         <a class="p-2 mb-3" routerLink="/test-error" routerLinkActive="active">Errors</a>
-        <a class="btn btn-outline-secondary mb-2" href="">Login</a>
-        <a class="btn btn-outline-secondary mb-3" href="">Sign up</a>
+        <a class="btn btn-outline-secondary mb-2" routerLink="/account/login">Login</a>
+        <a class="btn btn-outline-secondary mb-3" routerLink="/account/register">Sign up</a>
         <a routerLink="/basket" class="position-relative mb-3">
             <i class="fa fa-shopping-cart fa-2x text-dark"></i>
             <div *ngIf="(basketService.basketSource$ | async) as basket" class="cart-no-second">{{getCount(basket.items)}}</div>
