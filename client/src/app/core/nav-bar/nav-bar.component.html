@@ -18,7 +18,7 @@
         </ng-container>
 
         <ng-container *ngIf="(accountService.currentUserSource$ | async) as user">
-            <p>Welcome: {{user.displayName}}</p>
+            <p>Welcome {{user.displayName}}</p>
         </ng-container>
 
     </div>
@@ -42,9 +42,9 @@
         </ng-container>
 
         <ng-container *ngIf="(accountService.currentUserSource$ | async) as user">
-            <p>Welcome: {{user.displayName}}</p>
+            <p>Welcome {{user.displayName}}</p>
         </ng-container>
-        
+
         <a routerLink="/basket" class="position-relative mb-3">
             <i class="fa fa-shopping-cart fa-2x text-dark"></i>
             <div *ngIf="(basketService.basketSource$ | async) as basket" class="cart-no-second">{{getCount(basket.items)}}</div>
