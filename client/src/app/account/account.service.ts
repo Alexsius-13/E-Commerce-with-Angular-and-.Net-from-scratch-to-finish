@@ -23,6 +23,7 @@ export class AccountService {
 
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', `Bearer ${token}`);
+    
     return this.http.get<User>(this.baseApiUrl + 'account', {headers}).pipe(
       map(user => {
         if(user) {
