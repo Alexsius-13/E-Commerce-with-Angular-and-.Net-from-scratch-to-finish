@@ -34,6 +34,7 @@
     </button>
     <button class="btn btn-primary" (click)="submitOrder()">
       Submit Order  <i class="fa fa-angle-right"></i> 
+      <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
     </button>
 
 </div>
