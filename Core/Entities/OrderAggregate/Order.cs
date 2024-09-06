@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Core.Entities.OrderAggregate
 {
     public class Order : BaseEntity
@@ -7,13 +5,15 @@ namespace Core.Entities.OrderAggregate
         public Order()
         {
         }
-        public Order(IReadOnlyList<OrderItem> orderItems,string buyerEmail, Address shipToAddress, DeliveryMethod deliveryMethod, decimal subtotal)
+        public Order(IReadOnlyList<OrderItem> orderItems,string buyerEmail, Address shipToAddress, DeliveryMethod deliveryMethod, 
+        decimal subtotal, string paymentIntentId)
         {
             BuyerEmail = buyerEmail;
             ShipToAddress = shipToAddress;
             DeliveryMethod = deliveryMethod;
             OrderItems = orderItems;
             SubTotal = subtotal;
+            PaymentIntentId = paymentIntentId;
         }
 
         public string BuyerEmail { get; set; }
